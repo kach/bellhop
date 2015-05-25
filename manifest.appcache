@@ -9,3 +9,6 @@ NETWORK:
 index.html
 css/app.css
 js/app.js
+*
+http://*
+https://*
