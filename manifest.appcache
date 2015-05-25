@@ -1,0 +1,11 @@
+CACHE MANIFEST
+# newneownewnew
+CACHE:
+#index.html
+#css/app.css
+#js/app.js
+
+NETWORK:
+index.html
+css/app.css
+js/app.js

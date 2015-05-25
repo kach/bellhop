@@ -1,0 +1,112 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700);
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.clearer {
+  clear: both;
+}
+/* Colors: http://www.google.com/design/spec/style/color.html#color-color-palette */
+#progressbar-container {
+  width: 100%;
+  height: 0.4em;
+  background-color: #f55;
+}
+#progressbar {
+  width: 70%;
+  height: 100%;
+  background-color: #500;
+}
+#header {
+  height: 3em;
+  padding: 0.5em;
+  box-shadow: 0 0em 0.4em rgba(0, 0, 0, 0.6);
+  background-color: #f55;
+  color: white;
+  font-weight: lighter;
+}
+#header #current-period,
+#header #next-period {
+  display: inline-block;
+}
+#header #current-container,
+#header #next-container {
+  height: 100%;
+  line-height: 2em;
+}
+#header #current-container {
+  float: left;
+}
+#header #next-container {
+  float: right;
+}
+#header #next-container #next-time {
+  font-weight: lighter;
+  font-size: 0.8em;
+}
+#schedule-container {
+  max-width: 40em;
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.column.today {
+  width: 23.80952381% !important;
+  opacity: 1 !important;
+}
+.column.today .period.now {
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+}
+.column {
+  opacity: 0.7;
+  float: left;
+  width: 19.04761905%;
+}
+.column .column-header {
+  padding-top: 1em;
+  text-align: center;
+}
+.column .period {
+  font-size: 0.7em;
+  height: 3.2em;
+  margin: 0.5em;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding-top: 0.4em;
+}
+.column .period .name {
+  line-height: 1.5em;
+}
+.column .period .time {
+  font-size: 0.8em;
+  font-weight: lighter;
+}
+a {
+  color: #559;
+  text-decoration: none;
+}
+a:hover {
+  color: #77A;
+}
+a:active {
+  color: darkgray;
+}
+a:visited {
+  color: #77A;
+}
+#info {
+  margin: 1em;
+  color: #888;
+  font-weight: lighter;
+}
