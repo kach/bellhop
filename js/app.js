@@ -119,10 +119,10 @@
         if (currentPeriodElement) {
             currentPeriodElement.className = 'period';
         }
-        var now = moment({hour: 9, minute: 59});
-        var day = 4;
-        //var now = moment();
-        //var day = now.day();
+        //var now = moment({hour: 9, minute: 59});
+        //var day = 4;
+        var now = moment();
+        var day = now.day();
         if (day === 0 || day === 6) {
             return weekend();
         }
