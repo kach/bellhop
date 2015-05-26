@@ -133,6 +133,15 @@
             "Thursday",
             "Friday",
         ][day - 1];
+        [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+        ].forEach(function(name) {
+            document.getElementById(name+'-col').className = 'column';
+        });
         document.getElementById(dayname+'-col').className += ' today';
 
         var schedule = Schedule[dayname];
