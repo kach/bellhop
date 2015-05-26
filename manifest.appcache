@@ -1,14 +1,9 @@
 CACHE MANIFEST
-# newneownewnew
+# 2015-05-25-19:10
 CACHE:
-#index.html
-#css/app.css
-#js/app.js
-
-NETWORK:
 index.html
 css/app.css
 js/app.js
-*
-http://*
-https://*
+js/moment.min.js
+favicon.png
+http://fonts.googleapis.com/css?family=Roboto:400,300,100
