@@ -155,27 +155,27 @@
             // Day hasn't started yet
             currentPeriodElement = null;
             var nextP    = schedule[i];
-            document.getElementById('current-period').innerText = "Early morning!";
+            document.getElementById('current-period').textContent = "Early morning!";
             document.getElementById('current-period').style.textShadow = '0 0 0';
-            document.getElementById('next-period').innerText = nextP.type.name;
+            document.getElementById('next-period').textContent = nextP.type.name;
             document.getElementById('next-period').style.textShadow = '0 0 0.2em '+nextP.type.color;
-            document.getElementById('next-time').innerText = moment(nextP.time, 'hh:mm').from(now);
+            document.getElementById('next-time').textContent = moment(nextP.time, 'hh:mm').from(now);
         } else if (i == schedule.length) {
             // School's out
             currentPeriodElement = null;
-            document.getElementById('current-period').innerText = "School's out!";
+            document.getElementById('current-period').textContent = "School's out!";
             document.getElementById('current-period').style.textShadow = '0 0 0';
-            document.getElementById('next-period').innerText = 'Homework';
+            document.getElementById('next-period').textContent = 'Homework';
             document.getElementById('next-period').style.textShadow = '0 0 0';
-            document.getElementById('next-time').innerText = '';
+            document.getElementById('next-time').textContent = '';
         } else {
             var currentP = schedule[i-1];
             var nextP    = schedule[i];
-            document.getElementById('current-period').innerText = currentP.type.name;
+            document.getElementById('current-period').textContent = currentP.type.name;
 //          document.getElementById('current-period').style.textShadow = '0 0 0.2em '+currentP.type.color;
-            document.getElementById('next-period').innerText = nextP.type.name;
+            document.getElementById('next-period').textContent = nextP.type.name;
 //          document.getElementById('next-period').style.textShadow = '0 0 0.2em '+nextP.type.color;
-            document.getElementById('next-time').innerText = moment(nextP.time, 'hh:mm').from(now);
+            document.getElementById('next-time').textContent = moment(nextP.time, 'hh:mm').from(now);
             currentPeriodElement = document.getElementById(dayname+'-col').childNodes[i+2];
 
             var delta = moment(nextP.time, 'hh:mm').diff(now, 'minutes', true);
@@ -190,11 +190,11 @@
     }
 
     function weekend() {
-        document.getElementById('current-period').innerText = 'Weekend';
-        document.getElementById('next-period').innerText = choose(
+        document.getElementById('current-period').textContent = 'Weekend';
+        document.getElementById('next-period').textContent = choose(
             'AP Sleep'
         );
-        document.getElementById('next-time').innerText = '';
+        document.getElementById('next-time').textContent = '';
     }
 
     window.addEventListener("load", function() {
@@ -203,10 +203,10 @@
             Schedule[day].forEach(function(period) {
                 var el = document.createElement("div");
                 var name = document.createElement("div");
-                name.innerText = period.type.name;
+                name.textContent = period.type.name;
                 name.className = 'name';
                 var time = document.createElement("div");
-                time.innerText = period.time;
+                time.textContent = period.time;
                 time.className = 'time';
                 el.appendChild(name);
                 el.appendChild(time);
