@@ -47,6 +47,10 @@
         Staff: {
             name: "Staff",
             color: "#FFD54F"
+        },
+        Done: {
+            name: "School's out",
+            color: "#000000"
         }
     };
     var Schedule = {
@@ -57,7 +61,8 @@
             {type: Period.C, time: '11:25'},
             {type: Period.Lunch, time: '12:40'},
             {type: Period.D, time: '13:20'},
-            {type: Period.Staff, time: '14:45'}
+            {type: Period.Staff, time: '14:45'},
+            {type: Period.Done, time: '15:35'}
         ],
         "Tuesday": [
             {type: Period.E, time: '8:30'},
@@ -66,7 +71,8 @@
             {type: Period.A, time: '11:00'},
             {type: Period.Lunch, time: '12:15'},
             {type: Period.F, time: '12:55'},
-            {type: Period.G, time: '14:20'}
+            {type: Period.G, time: '14:20'},
+            {type: Period.Done, time: '15:35'}
         ],
         "Wednesday": [
             {type: Period.B, time: '8:30'},
@@ -75,7 +81,8 @@
             {type: Period.D, time: '11:25'},
             {type: Period.Lunch, time: '12:40'},
             {type: Period.F, time: '13:20'},
-            {type: Period.Staff, time: '14:45'}
+            {type: Period.Staff, time: '14:45'},
+            {type: Period.Done, time: '15:35'}
         ],
         "Thursday": [
             {type: Period.E, time: '8:30'},
@@ -84,7 +91,8 @@
             {type: Period.B, time: '11:30'},
             {type: Period.Lunch, time: '12:45'},
             {type: Period.G, time: '13:25'},
-            {type: Period.Tutorial, time: '14:50'}
+            {type: Period.Tutorial, time: '14:50'},
+            {type: Period.Done, time: '15:35'}
         ],
         "Friday": [
             {type: Period.C, time: '8:30'},
@@ -93,7 +101,8 @@
             {type: Period.E, time: '11:25'},
             {type: Period.Lunch, time: '12:35'},
             {type: Period.F, time: '13:15'},
-            {type: Period.G, time: '14:35'}
+            {type: Period.G, time: '14:35'},
+            {type: Period.Done, time: '15:45'}
         ]
     };
 /*
@@ -119,10 +128,10 @@
         if (currentPeriodElement) {
             currentPeriodElement.className = 'period';
         }
-        //var now = moment({hour: 9, minute: 59});
-        //var day = 4;
         var now = moment();
         var day = now.day();
+        //var now = moment({hour: 16, minute: 00});
+        //var day = 3;
         if (day === 0 || day === 6) {
             return weekend();
         }
@@ -160,7 +169,7 @@
             document.getElementById('next-period').textContent = nextP.type.name;
             document.getElementById('next-period').style.textShadow = '0 0 0.2em '+nextP.type.color;
             document.getElementById('next-time').textContent = moment(nextP.time, 'hh:mm').from(now);
-        } else if (i == schedule.length) {
+        } else if (i >= schedule.length) {
             // School's out
             currentPeriodElement = null;
             document.getElementById('current-period').textContent = "School's out!";
@@ -200,13 +209,16 @@
     window.addEventListener("load", function() {
         Object.keys(Schedule).forEach(function(day) {
             var container = document.getElementById(day+'-col');
-            Schedule[day].forEach(function(period) {
+            Schedule[day].forEach(function(period, idx) {
+                if (idx === Schedule[day].length - 1) {
+                    return;
+                }
                 var el = document.createElement("div");
                 var name = document.createElement("div");
                 name.textContent = period.type.name;
                 name.className = 'name';
                 var time = document.createElement("div");
-                time.textContent = period.time;
+                time.textContent = period.time + '-' + Schedule[day][idx+1].time;
                 time.className = 'time';
                 el.appendChild(name);
                 el.appendChild(time);
