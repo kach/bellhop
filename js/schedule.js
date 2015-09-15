@@ -31,7 +31,7 @@ var Period = {
         name: "Tut",
         color: "white"
     },
-    Flex Time: {
+    Flex: {
         name: "Flx",
         color: "white"
     },
