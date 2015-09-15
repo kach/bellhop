@@ -31,6 +31,10 @@ var Period = {
         name: "Tut",
         color: "white"
     },
+    Flex: {
+        name: "Flx",
+        color: "white"
+    },
     Lunch: {
         name: "Lunch",
         color: "black"
