@@ -34,7 +34,7 @@
         },
         Flex: {
             name: "Flex Time",
-            color: "#FFFFFF"
+            color: "#006699"
         },
         Lunch: {
             name: "Lunch",
