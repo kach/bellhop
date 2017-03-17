@@ -55,54 +55,54 @@
     };
     var Schedule = {
         "Monday": [
-            {type: Period.A, time: '8:25'},
-            {type: Period.Brunch, time: '9:45'},
-            {type: Period.B, time: '10:00'},
-            {type: Period.C, time: '11:25'},
-            {type: Period.Lunch, time: '12:40'},
-            {type: Period.F, time: '13:20'},
-            {type: Period.Staff, time: '14:45'},
-            {type: Period.Done, time: '15:35'}
+            {type: Period.A, start: '8:25', end: '9:45'},
+            {type: Period.Brunch, start: '9:45', end: '10:00'},
+            {type: Period.B, start: '10:00', end: '11:15'},
+            {type: Period.C, start: '11:25', end: '12:40'},
+            {type: Period.Lunch, start: '12:40', end: '13:20'},
+            {type: Period.F, start: '13:20', end: '14:35'},
+            {type: Period.Staff, start: '14:45', end: '15:35'},
+            {type: Period.Done, start: '15:35'}
         ],
         "Tuesday": [
-            {type: Period.D, time: '8:25'},
-            {type: Period.Brunch, time: '9:45'},
-            {type: Period.Tutorial, time: '10:00'},
-            {type: Period.E, time: '11:00'},
-            {type: Period.Lunch, time: '12:15'},
-            {type: Period.A, time: '12:55'},
-            {type: Period.G, time: '14:25'},
-            {type: Period.Done, time: '15:40'}
+            {type: Period.D, start: '8:25', end: '9:45'},
+            {type: Period.Brunch, start: '9:45', end: '10:00'},
+            {type: Period.Tutorial, start: '10:00', end: '10:50'},
+            {type: Period.E, start: '11:00', end: '12:15'},
+            {type: Period.Lunch, start: '12:15', end: '12:55'},
+            {type: Period.A, start: '12:55', end: '14:15'},
+            {type: Period.G, start: '14:25', end: '15:40'},
+            {type: Period.Done, start: '15:40'}
         ],
         "Wednesday": [
-            {type: Period.B, time: '8:25'},
-            {type: Period.Brunch, time: '9:50'},
-            {type: Period.C, time: '10:05'},
-            {type: Period.D, time: '11:35'},
-            {type: Period.Lunch, time: '12:55'},
-            {type: Period.F, time: '13:35'},
-            {type: Period.Staff, time: '15:05'},
-            {type: Period.Done, time: '15:45'}
+            {type: Period.B, start: '8:25', end: '9:50'},
+            {type: Period.Brunch, start: '9:50', end: '10:05'},
+            {type: Period.C, start: '10:05', end: '11:25'},
+            {type: Period.D, start: '11:35', end: '12:55'},
+            {type: Period.Lunch, start: '12:55', end: '13:35'},
+            {type: Period.F, start: '13:35', end: '14:55'},
+            {type: Period.Staff, start: '15:05', end: '15:45"'},
+            {type: Period.Done, start: '15:45'}
         ],
         "Thursday": [
-            {type: Period.E, time: '8:25'},
-            {type: Period.Brunch, time: '9:50'},
-            {type: Period.A, time: '10:05'},
-            {type: Period.B, time: '11:25'},
-            {type: Period.Lunch, time: '12:35'},
-            {type: Period.G, time: '13:15'},
-            {type: Period.Tutorial, time: '14:45'},
-            {type: Period.Done, time: '15:35'}
+            {type: Period.E, start: '8:25', end: '9:50'},
+            {type: Period.Brunch, start: '9:50', end: '10:05'},
+            {type: Period.A, start: '10:05', end: '11:15'},
+            {type: Period.B, start: '11:25', end: '12:35'},
+            {type: Period.Lunch, start: '12:35', end: '13:15'},
+            {type: Period.G, start: '13:15', end: '14:35'},
+            {type: Period.Tutorial, start: '14:45', end: '15:35'},
+            {type: Period.Done, start: '15:35'}
         ],
         "Friday": [
-            {type: Period.C, time: '8:25'},
-            {type: Period.Brunch, time: '9:40'},
-            {type: Period.D, time: '9:55'},
-            {type: Period.E, time: '11:25'},
-            {type: Period.Lunch, time: '12:25'},
-            {type: Period.F, time: '13:05'},
-            {type: Period.G, time: '14:25'},
-            {type: Period.Done, time: '15:35'}
+            {type: Period.C, start: '8:25', end: '9:40'},
+            {type: Period.Brunch, start: '9:40', end: '9:55'},
+            {type: Period.D, start: '9:55', end: '11:05'},
+            {type: Period.E, start: '11:25', end: '12:25'},
+            {type: Period.Lunch, start: '12:25', end: '13:05'},
+            {type: Period.F, start: '13:05', end: '14:15'},
+            {type: Period.G, start: '14:25', end: '15:35'},
+            {type: Period.Done, start: '15:35'}
         ]
     };
 /*
@@ -129,8 +129,8 @@
             currentPeriodElement.className = 'period';
         }
         var now = moment();
+        // var now = moment({hour: 11, minute: 16});
         var day = now.day();
-        //var now = moment({hour: 16, minute: 00});
         //var day = 3;
         if (day === 0 || day === 6) {
             return weekend();
@@ -156,10 +156,11 @@
         var schedule = Schedule[dayname];
 
         for (var i=0; i<schedule.length; i++) {
-            if (moment(schedule[i].time, 'hh:mm').isAfter(now)) {
+            if (moment(schedule[i].start, 'hh:mm').isAfter(now)) {
                 break;
             }
         }
+        
         if (i == 0) {
             // Day hasn't started yet
             currentPeriodElement = null;
@@ -168,7 +169,7 @@
             document.getElementById('current-period').style.textShadow = '0 0 0';
             document.getElementById('next-period').textContent = nextP.type.name;
             document.getElementById('next-period').style.textShadow = '0 0 0.2em '+nextP.type.color;
-            document.getElementById('next-time').textContent = moment(nextP.time, 'hh:mm').from(now);
+            document.getElementById('next-time').textContent = moment(nextP.start, 'hh:mm').from(now);
         } else if (i >= schedule.length) {
             // School's out
             currentPeriodElement = null;
@@ -177,6 +178,14 @@
             document.getElementById('next-period').textContent = 'Homework';
             document.getElementById('next-period').style.textShadow = '0 0 0';
             document.getElementById('next-time').textContent = '';
+        } else if (now.isAfter(moment(schedule[i-1].end, 'hh:mm'))) {
+            var currentP = schedule[i-1];
+            var nextP    = schedule[i];
+            document.getElementById('current-period').textContent = "Passing period";
+            document.getElementById('current-period').style.textShadow = '0 0 0';
+            document.getElementById('next-period').textContent = nextP.type.name;
+            document.getElementById('next-period').style.textShadow = '0 0 0';
+            document.getElementById('next-time').textContent = moment(nextP.start, 'hh:mm').from(now);
         } else {
             var currentP = schedule[i-1];
             var nextP    = schedule[i];
@@ -184,10 +193,10 @@
 //          document.getElementById('current-period').style.textShadow = '0 0 0.2em '+currentP.type.color;
             document.getElementById('next-period').textContent = nextP.type.name;
 //          document.getElementById('next-period').style.textShadow = '0 0 0.2em '+nextP.type.color;
-            document.getElementById('next-time').textContent = moment(nextP.time, 'hh:mm').from(now);
+            document.getElementById('next-time').textContent = moment(nextP.start, 'hh:mm').from(now);
             currentPeriodElement = document.getElementById(dayname+'-col').childNodes[i+2];
 
-            var delta = moment(nextP.time, 'hh:mm').diff(now, 'minutes', true);
+            var delta = moment(nextP.start, 'hh:mm').diff(now, 'minutes', true);
             if (delta > 0 && delta < 10) {
                 document.getElementById('progressbar-container').style.display = 'block';
                 document.getElementById('progressbar').style.width = (100*(10-delta)/10)+'%';
@@ -218,7 +227,7 @@
                 name.textContent = period.type.name;
                 name.className = 'name';
                 var time = document.createElement("div");
-                time.textContent = period.time + '-' + Schedule[day][idx+1].time;
+                time.textContent = period.start + '-' + period.end;
                 time.className = 'time';
                 el.appendChild(name);
                 el.appendChild(time);
