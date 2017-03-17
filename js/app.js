@@ -160,7 +160,7 @@
                 break;
             }
         }
-        
+
         if (i == 0) {
             // Day hasn't started yet
             currentPeriodElement = null;
@@ -193,7 +193,7 @@
 //          document.getElementById('current-period').style.textShadow = '0 0 0.2em '+currentP.type.color;
             document.getElementById('next-period').textContent = nextP.type.name;
 //          document.getElementById('next-period').style.textShadow = '0 0 0.2em '+nextP.type.color;
-            document.getElementById('next-time').textContent = moment(nextP.start, 'hh:mm').from(now);
+            document.getElementById('next-time').textContent = moment(currentP.end, 'hh:mm').from(now);
             currentPeriodElement = document.getElementById(dayname+'-col').childNodes[i+2];
 
             var delta = moment(nextP.start, 'hh:mm').diff(now, 'minutes', true);
