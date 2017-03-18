@@ -98,7 +98,7 @@
             {type: Period.C, start: '8:25', end: '9:40'},
             {type: Period.Brunch, start: '9:40', end: '9:55'},
             {type: Period.D, start: '9:55', end: '11:05'},
-            {type: Period.E, start: '11:25', end: '12:25'},
+            {type: Period.E, start: '11:15', end: '12:25'},
             {type: Period.Lunch, start: '12:25', end: '13:05'},
             {type: Period.F, start: '13:05', end: '14:15'},
             {type: Period.G, start: '14:25', end: '15:35'},
